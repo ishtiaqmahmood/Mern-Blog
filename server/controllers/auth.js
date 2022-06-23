@@ -22,7 +22,7 @@ exports.signup = (req, res) => {
           error: err,
         });
       }
-      res.json({
+      return res.json({
         message: "Signup success! Please Signin.",
       });
     });
