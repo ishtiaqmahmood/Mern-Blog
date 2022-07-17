@@ -46,6 +46,25 @@ const Header = () => {
                   </NavItem>
                 </React.Fragment>
               )}
+
+              {isAuth() && isAuth().role === 0 && (
+                <NavItem>
+                  <NavLink style={{ cursor: "pointer" }}>
+                    <Link href="/user">
+                      <NavLink>{`${isAuth().name}'s Dashboard`}</NavLink>
+                    </Link>
+                  </NavLink>
+                </NavItem>
+              )}
+              {isAuth() && isAuth().role === 1 && (
+                <NavItem>
+                  <NavLink style={{ cursor: "pointer" }}>
+                    <Link href="/admin">
+                      <NavLink>{`${isAuth().name}'s Dashboard`}</NavLink>
+                    </Link>
+                  </NavLink>
+                </NavItem>
+              )}
               {isAuth() && (
                 <NavItem>
                   <NavLink
