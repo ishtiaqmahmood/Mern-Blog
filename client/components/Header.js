@@ -12,6 +12,12 @@ import { APP_NAME } from "../config";
 import Link from "next/link";
 import { signout, isAuth } from "../actions/auth";
 import Router from "next/router";
+import NProgress from "nprogress";
+import "../node_modules/nprogress/nprogress.css";
+
+Router.onRouteChangeStart = (url) => NProgress.start();
+Router.onRouteChangeComplete = (url) => NProgress.done();
+Router.onRouteChangeError = (url) => NProgress.done();
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +28,7 @@ const Header = () => {
 
   return (
     <React.Fragment>
-      <div>
+      <div suppressHydrationWarning={true}>
         <Navbar color="light" light expand="md">
           <Link href="/">
             <NavLink style={{ cursor: "pointer" }} className="fw-bold">
@@ -30,8 +36,8 @@ const Header = () => {
             </NavLink>
           </Link>
           <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="ms-auto" navbar>
+          <Collapse isOpen={isOpen} navbar suppressHydrationWarning={true}>
+            <Nav className="ms-auto" navbar suppressHydrationWarning={true}>
               {!isAuth() && (
                 <React.Fragment>
                   <NavItem>
